@@ -1,0 +1,28 @@
+<html><body>
+<h3>Student DB (Add / Edit / Delete)</h3>
+
+<form action="/add" method="post">
+  <input name="name" placeholder="Name" required>
+  <input name="age" type="number" placeholder="Age" required>
+  <input name="course" placeholder="Course" required>
+  <button>Add</button>
+</form><br>
+
+<table border="1">
+<tr><th>ID</th><th>Name</th><th>Age</th><th>Course</th><th>Action</th></tr>
+{% for s in students %}
+<tr>
+  <form action="/edit/{{s[0]}}" method="post">
+  <td>{{s[0]}}</td>
+  <td><input name="name" value="{{s[1]}}"></td>
+  <td><input name="age" value="{{s[2]}}"></td>
+  <td><input name="course" value="{{s[3]}}"></td>
+  <td>
+    <button>Update</button>
+    <a href="/del/{{s[0]}}">Delete</a>
+  </td>
+  </form>
+</tr>
+{% endfor %}
+</table>
+</body></html>
